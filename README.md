@@ -1,4 +1,11 @@
-# proxy
-Install and setup 3proxy on your VPS (Debian/Ubuntu)
+# Setup 3proxy on your VPS (Debian/Ubuntu)
+License: GPLv3
 
-sudo bash proxy.sh
+```
+apt-get update
+apt-get install git -y
+git clone https://github.com/zeddex/proxy.git
+cd proxy
+chmod +x proxy.sh
+./proxy.sh
+```
