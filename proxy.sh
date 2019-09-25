@@ -17,8 +17,7 @@ make -f Makefile.Linux
 mkdir /etc/3proxy
 cd ~/3proxy-0.8.12/src
 cp 3proxy /usr/bin/
-cd ~/3proxy-0.8.12/scripts/rc.d
-cp proxy.sh /etc/init.d/3proxy
+
 adduser --system --no-create-home --disabled-login --group proxy3
 
 touch /etc/3proxy/3proxy.cfg
@@ -49,6 +48,40 @@ chmod 400 /etc/3proxy/.proxyauth
 
 mkdir /var/log/3proxy
 chown proxy3:proxy3 /var/log/3proxy
+
+touch /etc/init.d/3proxy
+
+echo '
+#!/bin/sh
+#
+### BEGIN INIT INFO
+# Provides: 3Proxy
+# Required-Start:
+# Required-Stop:
+# Default-Start: 2 3 4 5
+# Default-Stop: 1 0 6
+# Short-Description: Initialize 3proxy server
+# Description: starts 3proxy
+# chkconfig: 2345 20 80
+### END INIT INFO
+case "$1" in
+ start)
+ echo Starting 3Proxy
+ /usr/bin/3proxy /etc/3proxy/3proxy.cfg
+ ;;
+ stop)
+ echo Stopping 3Proxy
+ /usr/bin/killall 3proxy
+ ;;
+ restart|reload)
+ echo Reloading 3Proxy
+ /usr/bin/killall -s USR1 3proxy
+ ;;
+ *)
+ echo Usage: \$0 "{start|stop|restart}"
+ exit 1
+esac
+exit 0' >> /etc/init.d/3proxy
 
 chmod +x /etc/init.d/3proxy
 
