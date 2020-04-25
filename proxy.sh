@@ -8,14 +8,14 @@ patching(){
 patching;
 
 cd ~
-wget --no-check-certificate https://github.com/z3APA3A/3proxy/archive/0.8.12.tar.gz
-tar xzf 0.8.12.tar.gz
-cd ~/3proxy-0.8.12/src
+wget --no-check-certificate https://github.com/z3APA3A/3proxy/archive/0.8.13.tar.gz
+tar xzf 0.8.13.tar.gz
+cd ~/3proxy-0.8.13/src
 sed -i '/#define MAXNSERVERS 5/ a\#define ANONYMOUS 1' proxy.h
-cd ~/3proxy-0.8.12
+cd ~/3proxy-0.8.13
 make -f Makefile.Linux
 mkdir /etc/3proxy
-cd ~/3proxy-0.8.12/src
+cd ~/3proxy-0.8.13/src
 cp 3proxy /usr/bin/
 
 adduser --system --no-create-home --disabled-login --group proxy3
