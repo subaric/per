@@ -14,10 +14,9 @@ ln -s Makefile.Linux Makefile
 make
 sudo make install
 
-touch /etc/3proxy/conf/3proxy.cfg
+echo -n > /etc/3proxy/conf/3proxy.cfg
 
-echo "
-nserver 8.8.8.8
+echo "nserver 8.8.8.8
 nserver 8.8.4.4
 nscache 65536
 timeouts 1 5 30 60 180 1800 15 60
@@ -27,8 +26,6 @@ auth cache strong
 proxy -n -a -p50000
 socks -p50001" >> /etc/3proxy/conf/3proxy.cfg
 #https proxy на 50000 порту, socks5 на 50001
-
-touch /etc/3proxy/conf/passwd
 
 echo "user:CL:password" >> /etc/3proxy/conf/passwd	#логин и пароль по умолчанию
 
