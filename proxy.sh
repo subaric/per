@@ -29,4 +29,8 @@ socks -p50001" >> /etc/3proxy/conf/3proxy.cfg
 
 echo "user:CL:password" >> /etc/3proxy/conf/passwd	#логин и пароль по умолчанию
 
+iptables -I INPUT -p tcp -m tcp --dport 50000 -j ACCEPT
+iptables -I INPUT -p tcp -m tcp --dport 50001 -j ACCEPT
+iptables -I INPUT -p udp -m udp --dport 50001 -j ACCEPT
+
 service 3proxy restart
