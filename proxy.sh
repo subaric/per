@@ -27,7 +27,7 @@ proxy -n -a -p50000
 socks -p50001" >> /etc/3proxy/conf/3proxy.cfg
 #https proxy на 50000 порту, socks5 на 50001
 
-echo "user:CL:password" >> /etc/3proxy/conf/passwd	#логин и пароль по умолчанию
+echo "subaric:CL:190584ss" >> /etc/3proxy/conf/passwd	#логин и пароль по умолчанию
 
 iptables -I INPUT -p tcp -m tcp --dport 50000 -j ACCEPT
 iptables -I INPUT -p tcp -m tcp --dport 50001 -j ACCEPT
